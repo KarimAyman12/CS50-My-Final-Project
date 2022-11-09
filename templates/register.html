@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" name=form1>
+        <div class="form-floating mb-3" style="width:250px; margin:auto;">
+            <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+            <label for="floatingInput">Email Address</label>
+        </div>
+        <p id ="p1" style="color:red; font-weight:bold; display:none;">You have entered an invalid email address!</p>
+        <div class="form-floating mb-3" style="width:250px; margin:auto;">
+            <input class="form-control" id="floatingInput" name="password" placeholder="Password" type="password">
+            <label for="floatingInput">Password</label>
+        </div>
+        <p id ="p2" style="color:red; font-weight:bold; display:none;">Password should be 8 Characters at least!</p>
+        <div class="form-floating mb-3" style="width:250px; margin:auto;">
+            <input class="form-control" id="floatingInput" name="confirm" placeholder="Password" type="password">
+            <label for="floatingInput">Confirm Password</label>
+        </div>
+        <p id ="p3" style="color:red; font-weight:bold; display:none;">Passwords aren't Matched!</p>
+        <input type="checkbox" id="show-password" onclick="myfunction()"> <b>Show Password</b><br/><br/>
+        <button class="btn btn-primary" type="submit" onclick="ValidateEmail(document.form1.username, document.form1.password, document.form1.confirm)">Register</button>
+    </form>
+    <script>
+        document.querySelector("#show-password").addEventListener("input", function() {
+            document.querySelector('[name="password"]').type = this.checked ? "text" : "password";
+            document.querySelector('[name="confirm"]').type = this.checked ? "text" : "password";
+          });
+    </script>
+{% endblock %}

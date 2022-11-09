@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sent
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive" style="overflow: auto; width: 100%">
+        <table class="table table-striped" style="width: 100%;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"> To </th>
+                    <th scope="col"> Subject </th>
+                    <th scope="col"> Time </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" style="color:black;font-weight:bold;font-size:20px;" id="no_email">No Sent Emails yet!</td></tr>
+                {% for email in emails %}
+                    <tr class="email">
+                        <th scope="row" id="counter"></th>
+                        <td>{{ email.recipient }}</td>
+                        <td>{{ email.subject }}</td>
+                        <td>{{ email.timestamp }}</td>
+                        <td>
+                            <form action="/email" method="post">
+                                <input type="hidden" name="emailId" value="{{ email.id }}">
+                                <input type="submit" class="btn btn-primary" value="View Email">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var x = document.getElementById("no_email");
+        if(document.querySelectorAll('.email').length > 0){
+            x.style.display = "none";
+        }
+    </script>
+{% endblock %}

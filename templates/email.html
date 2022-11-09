@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inbox
+{% endblock %}
+
+{% block main %}
+    <div class="alert alert-primary" role="alert">
+        <div class="table-responsive" style="overflow: auto; width: 100%">
+         <table class="table" cellspacing="0" cellpadding="0" style="width: 100%;border-collapse:collapse;">
+            <tr>
+                <td style="text-align:left">
+                    <h5>
+                        <strong>From: {{ emailDetail.sender }}</strong>
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center">
+                    <h5>
+                        <strong>To: {{ emailDetail.recipient }}</strong>
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
+                    <h5>
+                        <strong>Time: {{ emailDetail.timestamp }}</strong>
+                    </h5>
+                </td>
+            </tr>
+         </table>
+        </div>
+         <hr style="width:100%" >
+         <h5 class="alert-heading" style="text-align:center;"><strong>Subject: {{ emailDetail.subject }}</strong></h5>
+         <p class="mb-0" style="text-align:center;"><strong>{{ emailDetail.body }}</strong></p>
+    </div>
+         <form action="/reply" method="post">
+            <input type="hidden" name="emailId" value="{{ emailDetail.id }}">
+            <input type="submit" class="btn btn-primary" value="Reply">
+         </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compose
+{% endblock %}
+
+{% block main %}
+    <form action="/compose" method="post">
+        <div class="anim-frame">
+            <label id="bold">From:</label>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="sender" type="email" value="{{ sender }}">
+        </div>
+        <div class="anim-frame">
+            <label id="bold">To:</label>
+            <input class="form-control mx-auto w-auto" id="recipient" name="recipient" placeholder="Recipient" type="email">
+        </div>
+        <div class="anim-frame">
+            <label id="bold">Subject:</label>
+            <input class="form-control mx-auto w-auto" id="subject" name="subject" placeholder="Subject" type="text">
+        </div>
+        <div class="anim-frame" style="margin-top: 10px;">
+            <textarea name="body"></textarea>
+        </div>
+            <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Send</button>
+    </form>
+{% endblock %}
